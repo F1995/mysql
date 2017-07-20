@@ -1,0 +1,16 @@
+drop procedure if exists `add_user`;
+create procedure add_user(
+	in ip VARCHAR(100), 				# 添加 主机ip
+	in username VARCHAR (100), 	# 添加 用户名 
+	in password VARCHAR(100)		# 添加 密码
+)
+BEGIN
+	set @username = username, @ip = ip , @password = password;
+	set @Sql = CONCAT(" CREATE USER '",@username,"'@'",@ip,"' IDENTIFIED by '",@password,"'");
+	PREPARE ranSql FROM @sql;
+	EXECUTE ranSql;
+end;
+# 执行
+call add_user("%","abc","root");
+
+
