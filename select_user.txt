@@ -1,0 +1,6 @@
+DROP PROCEDURE IF EXISTS `select_user`;
+CREATE PROCEDURE select_user () BEGIN
+	# 查询所有用户
+	select host as 主机信息 , user as 账号,password as 密码 from mysql.user;
+END;
+call select_user();
